@@ -26,3 +26,4 @@ print(str[slice(-2)])
 print(str[slice(-1,-12,-2)])
 print(str[slice(-5,-1)])
 
+#nice work
