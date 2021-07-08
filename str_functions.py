@@ -26,4 +26,16 @@ print(str[slice(-2)])
 print(str[slice(-1,-12,-2)])
 print(str[slice(-5,-1)])
 
+print(str.capitalize())
+print(str.casefold())
+print(str.center(30))
+print(str.count('l'))
+print(str.endswith('d!'))
+print(str.find('llo',1,2))
+print(str.startswith("H"))
+
+print(str.swapcase())
+print(str.split(" "))
+
+
 #nice work
