@@ -1,41 +1,40 @@
-str = 'Hello World!'
-
-print (str)          # Prints complete string
-print (str[0])       # Prints first character of the string
-print (str[2:5])     # Prints characters starting from 3rd to 5th
-print (str[2:])      # Prints string starting from 3rd character
-print (str * 2)      # Prints string two times
-print (str + "TEST") # Prints concatenated string
+from collections import Counter
+from heapq import heappush, heappop
 
 
-#Striping the string
-str2="      Hello World!     " #string with spaces
-print(len(str2))
+def rearrange(strs):
+  s=[]
+  s[:0]=strs
+  count = Counter(s)
 
-print(len(str2.strip()))
-print(len(str2.rstrip()))
-print(len(str2.lstrip()))
+  pq = []
+  for k, v in count.items():
+    heappush(pq, (-v, k))  
+ 
+  result = [0]*len(s)
 
-#Slicing the string
-#slice() constructor takes three params(start, stop,step)
-print(str[slice(2)])
-print(str[slice(0,3)])
-print(str[slice(0,8,2)])
-
-print(str[slice(-2)])
-print(str[slice(-1,-12,-2)])
-print(str[slice(-5,-1)])
-
-print(str.capitalize())
-print(str.casefold())
-print(str.center(30))
-print(str.count('l'))
-print(str.endswith('d!'))
-print(str.find('llo',1,2))
-print(str.startswith("H"))
-
-print(str.swapcase())
-print(str.split(" "))
+  prev = (1, '#')
 
 
-#nice work
+  ind = 0
+  while pq:
+    if ind >= len(s):
+      break
+
+    k = heappop(pq)
+    result[ind] = k[1]
+
+    if prev[0] < 0:
+      heappush(pq, prev)
+
+    prev = (k[0]+1, k[1])
+
+    ind += 1
+
+  if ind != len(s):
+    return None
+  elif isinstance(s, list):
+    return result
+  else:
+    return ''.join(result)
+print(rearrange("aaabc"))
